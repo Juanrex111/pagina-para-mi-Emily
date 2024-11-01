@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El inicio</title>
+    <style>
+        /* Estilos de fondo y texto */
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            text-align: center;
+            flex-direction: column; /* Coloca los elementos en columna */
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 10; /* Colocar el texto delante de las mariposas */
+            font-size: 1.2em; /* Aumentar el tamaño del texto */
+        }
+
+        /* Estilos de las mariposas */
+        .butterfly {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50% 50% 50% 50%;
+            opacity: 0;
+            animation: fly 5s ease-in-out forwards;
+            transform-origin: center;
+            z-index: 5; /* Colocar las mariposas detrás del texto */
+        }
+
+        /* Alas de las mariposas */
+        .butterfly::before, .butterfly::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffb6c1;
+            border-radius: 50%;
+            top: -5px;
+            animation: flap 0.6s ease-in-out infinite;
+        }
+
+        .butterfly::before {
+            left: -15px; /* Ala izquierda */
+        }
+
+        .butterfly::after {
+            right: -15px; /* Ala derecha */
+        }
+
+        /* Animación de aleteo */
+        @keyframes flap {
+            0%, 100% {
+                transform: scaleY(1);
+            }
+            50% {
+                transform: scaleY(0.8);
+            }
+        }
+
+        /* Animación de vuelo de las mariposas */
+        @keyframes fly {
+            0% {
+                transform: translate(-50%, 20px) scale(0.5) rotate(0deg); /* Comienza debajo del texto */
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Estilos del botón */
+        .button {
+            margin-top: 20px; /* Espacio entre el texto y el botón */
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff69b4; /* Color del botón */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ff1493; /* Color del botón al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Aún recuerdo con mucho cariño la noche en la que no podía dormir. Se me ocurrió subir esa nota a Instagram porque tenía el presentimiento de que usted me la iba a responder. La verdad, mientras escribía esa nota, ya tenía sueño; pero, aun así, quería publicarla porque sentía fuertemente que usted la iba a responder. La subí y me dormí con ese presentimiento. A la mañana siguiente, me levanté con la ilusión de que usted me hubiera respondido esa nota. Miré mis notificaciones de Instagram, y ahí estaba: un mensaje suyo respondiendo a la nota. Inmediatamente sentí una gran sensación de mariposas en el estómago. Nunca pensé que ese sería el inicio de una gran amistad.</p>
+        
+        <button class="button" onclick="window.location.href='file:///D:/Documents/codigo/2.html'">Un clic mas y ya :)</button> <!-- Botón que redirige a otra página -->
+    </div>
+
+    <script>
+        let butterflyInterval;
+        let butterflyCount = 0;
+
+        function createButterfly() {
+            const butterfly = document.createElement('div');
+            butterfly.classList.add('butterfly');
+
+            // Generar desplazamientos aleatorios
+            const randomX = (Math.random() - 0.5) * 1000; // Desplazamiento aleatorio en el eje X (hasta 500px a cada lado)
+            const randomY = -(Math.random() * 600 + 200); // Desplazamiento aleatorio en el eje Y (hacia arriba)
+
+            // Configurar estilo y animación de vuelo
+            butterfly.style.transform = `translate(-50%, 20px)`; // Comienza debajo del texto
+            butterfly.style.animation = `fly 5s ease-in-out forwards`;
+
+            // Esperar a que inicie la animación y luego mover a la posición aleatoria
+            setTimeout(() => {
+                butterfly.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${Math.random() * 360}deg)`;
+            }, 0);
+
+            document.body.appendChild(butterfly);
+
+            // Hacer que la mariposa desaparezca al final
+            butterfly.style.opacity = '1'; // Mostrar la mariposa al inicio
+
+            // Eliminar la mariposa después de la animación
+            butterfly.addEventListener('animationend', () => {
+                butterfly.remove();
+            });
+        }
+
+        // Crear una mariposa cada 500 ms y detener después de 10 segundos
+        butterflyInterval = setInterval(() => {
+            createButterfly();
+            butterflyCount++;
+
+            if (butterflyCount >= 20) { // Limita el número total de mariposas
+                clearInterval(butterflyInterval);
+            }
+        }, 500);
+    </script>
+</body>
+</html>

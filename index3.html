@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De aca hasta el fin</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .heart {
+            display: inline-block;
+            font-size: 24px; /* Tamaño del corazón */
+            margin-left: 10px; /* Espacio entre el texto y el corazón */
+            animation: pulse 1s infinite; /* Animación de pulso */
+        }
+
+        /* Animación de pulso del corazón */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2); /* Escala del corazón al pulso */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Solamente quiero agradecerle por todo lo que ha hecho por mí, por todos los momentos y la ayuda. Aunque no lo crea, a pesar de que antes trataba de no contarle las cosas que sentía por miedo a causar molestias, usted me ayudó a resolver cada cosa mala que sentía. Porque cuando hablo con usted, todo lo malo se va. Si estoy triste, la solución es hablar con usted; si estoy enojado, la solución es hablar con usted. Incluso, si estoy enojado con usted, se me pasa hablando con usted, porque usted es mi felicidad, Emily. Usted es el pincel que pinta mi vida. Cuando estoy con usted, siento una paz que no he sentido con ninguna otra persona, y esa es la razón por la cual a veces hablo bajito cuando estoy con usted. A veces me siento triste porque sé que, en algún momento, alguno de los dos se va a ir del país o posiblemente los dos. Y, aunque ya se lo dije, me gustaría comprar una casa en la que podamos vivir juntos y vernos progresar en nuestros estudios y en nuestras vidas. Me gustaría decir muchas más cosas, pero aún no sé cómo expresarlas en forma de texto. Espero que, con lo poco que dije, usted entienda todo el cariño y el aprecio que le tengo. Te quiero.</p>
+        <p>Atentamente, Juan Manuel (la rata) <span class="heart">❤️</span></p>
+    </div>
+</body>
+</html>
